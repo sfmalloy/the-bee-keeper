@@ -6,7 +6,7 @@ public class BatForce : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (swinging && !other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("Floor"))
+        if (swinging)
         {
             Destroy(other.gameObject);
         }

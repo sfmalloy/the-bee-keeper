@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BatSwing : MonoBehaviour
+public class BatSwing : MonoBehaviour, Useable
 {
     Animator animator;
     BatForce batForce;
@@ -11,12 +11,6 @@ public class BatSwing : MonoBehaviour
         batForce = GetComponentInChildren<BatForce>();
     }
 
-    void Update()
-    {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("SwingAnimation") && Input.GetButtonDown("Swing"))
-            animator.SetTrigger("Swing");
-    }
-
     public void OnSwingStart() 
     {
         batForce.swinging = true;
@@ -25,6 +19,12 @@ public class BatSwing : MonoBehaviour
     public void OnSwingStop()
     {
         batForce.swinging = false;
+    }
+
+    public void Use()
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("SwingAnimation"))
+            animator.SetTrigger("Swing");
     }
 }
 

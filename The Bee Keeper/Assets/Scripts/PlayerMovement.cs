@@ -31,7 +31,15 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         float hMove = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(speed * hMove, rb.velocity.y);
+        float hSpeed = 0; 
+        
+        // Bounds checking. I could use just objects off the edge of the screen but that breaks jumping so I'm
+        //      doing it this way instead :D
+        float screenWidth = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x;
+        if ((hMove > 0 && rb.position.x + transform.localScale.x / 2.0f <= screenWidth)
+            || (hMove < 0 && rb.position.x - transform.localScale.x / 2.0f >= -screenWidth))
+            hSpeed = speed * hMove;
+        rb.velocity = new Vector2(hSpeed, rb.velocity.y);
 
         // Only reason I'm doing it this way is I don't want the sprite to move when standing still.
         if (hMove < 0)
@@ -54,8 +62,10 @@ public class PlayerMovement : MonoBehaviour
         else if (!isGrounded && rb.velocity.y <= 0)
         {
             // Make player fall faster to make jump less floaty feeling
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 1.08f);
+            rb.gravityScale = 4;
         }
+        else
+            rb.gravityScale = 3;
     }
 
     void OnCollisionEnter2D(Collision2D other)
