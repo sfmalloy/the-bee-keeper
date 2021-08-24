@@ -36,9 +36,11 @@ public class PlaceObject : MonoBehaviour, Useable
 
     public void Use()
     {
-        Instantiate(objectToPlace, 
-                    transform.position, 
-                    Quaternion.identity).SetActive(true);
+        GameObject placed = Instantiate(objectToPlace, 
+                                        transform.position, 
+                                        Quaternion.identity);
+        placed.GetComponent<PickupObject>().pickable = false;
+        placed.SetActive(true);
     }
 
     private float ClampCompare(Func<float, float, float> function, float a, float b, float clampMin, float clampMax)

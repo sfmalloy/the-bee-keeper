@@ -7,8 +7,24 @@ public class BatForce : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if (swinging)
+            DestroyAndDrop(other.gameObject, other.gameObject.GetComponent<DropItem>());
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (swinging)
+            DestroyAndDrop(other.gameObject, other.gameObject.GetComponent<DropItem>());
+    }
+
+    void DestroyAndDrop(GameObject other, DropItem dropItem)
+    {
+        // DropItem dropItem = other.gameObject.GetComponent<DropItem>();
+        int numToDrop = Random.Range(dropItem.minDrop, dropItem.maxDrop + 1);
+        for (int i = 0; i < numToDrop; ++i)
         {
-            Destroy(other.gameObject);
+            Vector3 posOffset = new Vector3(Random.Range(-1.0f, 2.0f), 0);
+            Instantiate(dropItem.itemToDrop, other.transform.position + posOffset, Quaternion.identity);
         }
+        Destroy(other);
     }
 }
