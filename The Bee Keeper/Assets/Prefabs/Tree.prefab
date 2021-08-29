@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2976952476105301130}
   - component: {fileID: 4812007756843844974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trunk (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 42e8dc99b3b8c4a4c9a1986fa6caa147, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -93,7 +93,8 @@ GameObject:
   - component: {fileID: 9068010343379313543}
   - component: {fileID: 3827440747840503967}
   - component: {fileID: -8330128735466556789}
-  m_Layer: 0
+  - component: {fileID: 1753229758978146927}
+  m_Layer: 6
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,6 +162,27 @@ MonoBehaviour:
   itemToDrop: {fileID: 1951879277416239598, guid: cbf3ad927eb8cf845a09f91c1a1ce509, type: 3}
   minDrop: 1
   maxDrop: 4
+--- !u!50 &1753229758978146927
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010399949477461284}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4647547945031537933
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5299877201695493521}
   - component: {fileID: 1388733844940038794}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TopTrunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +253,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 2e0314e384c1f0941a61d1f0b046dae7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -253,7 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2189338567240836117}
   - component: {fileID: 5131474517864247210}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +335,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 34a71c3536f57df4cb310668bbc83b93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -335,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4777049898126652835}
   - component: {fileID: 8380237141248270345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +417,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 42e8dc99b3b8c4a4c9a1986fa6caa147, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -417,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8232969581802236005}
   - component: {fileID: 2396025693874877477}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trunk (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +499,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 42e8dc99b3b8c4a4c9a1986fa6caa147, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -499,7 +521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8027870347215034264}
   - component: {fileID: 6550388043763144252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +581,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 4446526ec3572284281c1d349797b698, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

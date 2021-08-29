@@ -4,26 +4,25 @@ public class BatForce : MonoBehaviour
 {
     public bool swinging;
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (swinging)
-            DestroyAndDrop(other.gameObject, other.gameObject.GetComponent<DropItem>());
-    }
-
     void OnTriggerStay2D(Collider2D other)
     {
         if (swinging)
-            DestroyAndDrop(other.gameObject, other.gameObject.GetComponent<DropItem>());
+        {
+            DestroyAndDrop(other.gameObject, other.gameObject.GetComponents<DropItem>());
+            swinging = false;
+        }
     }
 
-    void DestroyAndDrop(GameObject other, DropItem dropItem)
+    void DestroyAndDrop(GameObject other, params DropItem[] dropItems)
     {
-        // DropItem dropItem = other.gameObject.GetComponent<DropItem>();
-        int numToDrop = Random.Range(dropItem.minDrop, dropItem.maxDrop + 1);
-        for (int i = 0; i < numToDrop; ++i)
+        foreach (DropItem dropItem in dropItems)
         {
-            Vector3 posOffset = new Vector3(Random.Range(-1.0f, 2.0f), 0);
-            Instantiate(dropItem.itemToDrop, other.transform.position + posOffset, Quaternion.identity);
+            int numToDrop = Random.Range(dropItem.minDrop, dropItem.maxDrop + 1);
+            for (int i = 0; i < numToDrop; ++i)
+            {
+                Vector3 posOffset = new Vector3(Random.Range(-1.0f, 2.0f), 0);
+                Instantiate(dropItem.itemToDrop, other.transform.position + posOffset, Quaternion.identity);
+            }
         }
         Destroy(other);
     }

@@ -6,6 +6,7 @@ public struct Item
 {
     public GameObject gameObject;
     public int quantity;
+    public Text quantityText;
     public Image uiImage;
     public bool isInfinite;
 }
@@ -13,7 +14,6 @@ public struct Item
 public class Inventory : MonoBehaviour
 {
     public Item[] placeable;
-    Item currentItem;
     int index;
 
     public GameObject playerHand;
@@ -34,27 +34,46 @@ public class Inventory : MonoBehaviour
                 newIndex = k - KeyCode.Alpha1;
         }
 
+        newIndex -= (int) Input.mouseScrollDelta.y;
+
+        if (newIndex < 0)
+            newIndex += placeable.Length;
+        else if (newIndex >= placeable.Length)
+            newIndex -= placeable.Length;
+
         if (newIndex != index)
             SetCurrentItem(newIndex);
-
+        
         if (Input.GetButtonDown("Swing"))
         {
-            if (currentItem.isInfinite || currentItem.quantity > 0)
+            if (placeable[index].isInfinite || placeable[index].quantity > 0)
             {
-                currentItem.gameObject.GetComponent<Useable>().Use();
-                if (!currentItem.isInfinite)
-                    currentItem.quantity -= 1;
+                placeable[index].gameObject.GetComponent<Useable>().Use();
+                if (!placeable[index].isInfinite) 
+                {
+                    placeable[index].quantity -= 1;
+                }
             }
         }
+
+        foreach (Item i in placeable)
+        {
+            if (!i.isInfinite)
+                i.quantityText.text = "" + i.quantity;
+        }
+
     }
 
     void SetCurrentItem(int newIndex)
     {
         if (index != -1)
-            currentItem.gameObject.SetActive(false);
+        {
+            placeable[index].uiImage.enabled = false;
+            placeable[index].gameObject.SetActive(false);
+        }
 
         index = newIndex;
-        currentItem = placeable[index];
-        currentItem.gameObject.SetActive(true);
+        placeable[index].uiImage.enabled = true;
+        placeable[index].gameObject.SetActive(true);
     }
 }

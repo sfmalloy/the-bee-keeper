@@ -27,5 +27,3 @@ public class BatSwing : MonoBehaviour, Useable
             animator.SetTrigger("Swing");
     }
 }
-
-

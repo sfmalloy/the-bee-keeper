@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
 
     public Transform containerTransform;
+    public Inventory inventory;
  
     Rigidbody2D rb;
 
@@ -73,4 +74,14 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Floor"))
             isGrounded = true;
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Item"))
+        {
+            inventory.placeable[other.gameObject.GetComponent<PickupObject>().inventoryIndex].quantity += 1;
+            Destroy(other.gameObject);
+        }
+    }
+
 }

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Floor
   - Bat
+  - Item
+  - Flower
+  - Net
+  - Bee
   layers:
   - Default
   - TransparentFX
@@ -15,9 +19,9 @@ TagManager:
   - UI
   - Hittable
   - Pickable
-  - 
-  - 
-  - 
+  - Post Processing
+  - Player
+  - Net
   - 
   - 
   - 
