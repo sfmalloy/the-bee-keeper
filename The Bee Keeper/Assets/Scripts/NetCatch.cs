@@ -4,7 +4,7 @@ public class NetCatch : MonoBehaviour
 {
     public bool swinging;
     public BeeCount beeCount;
-
+    
     void OnTriggerStay2D(Collider2D other)
     {
         if (swinging && other.CompareTag("Bee"))

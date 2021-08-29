@@ -7,6 +7,7 @@ public class PlaceObject : MonoBehaviour, Useable
     public GameObject[] objectsToPlace;
     public GameObject player;
     public float groundHeight;
+    public GameManager gameManager;
 
     public List<GameObject> activeObjects;
 
@@ -26,26 +27,29 @@ public class PlaceObject : MonoBehaviour, Useable
 
     void Update()
     {
-        float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-        float screenWidth = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, groundHeight)).x - objectToPlace.transform.localScale.x / 2;
+        if (!gameManager.isPaused)
+        {
+            float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            float screenWidth = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, groundHeight)).x - objectToPlace.transform.localScale.x / 2;
 
-        if (mouseX < player.transform.position.x)
-        {
-            transform.position = new Vector2(ClampCompare(Mathf.Max, 
-                                                          mouseX, 
-                                                          player.transform.position.x - MAX_PLACE_DIST, 
-                                                          -screenWidth, 
-                                                          screenWidth), 
-                                             groundHeight);
-        }
-        else
-        {
-            transform.position = new Vector2(ClampCompare(Mathf.Min, 
-                                                          mouseX, 
-                                                          player.transform.position.x + MAX_PLACE_DIST, 
-                                                          -screenWidth, 
-                                                          screenWidth),
-                                             groundHeight);
+            if (mouseX < player.transform.position.x)
+            {
+                transform.position = new Vector2(ClampCompare(Mathf.Max, 
+                                                            mouseX, 
+                                                            player.transform.position.x - MAX_PLACE_DIST, 
+                                                            -screenWidth, 
+                                                            screenWidth), 
+                                                groundHeight);
+            }
+            else
+            {
+                transform.position = new Vector2(ClampCompare(Mathf.Min, 
+                                                            mouseX, 
+                                                            player.transform.position.x + MAX_PLACE_DIST, 
+                                                            -screenWidth, 
+                                                            screenWidth),
+                                                groundHeight);
+            }
         }
     }
 

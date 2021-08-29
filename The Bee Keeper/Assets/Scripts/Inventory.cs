@@ -17,51 +17,58 @@ public class Inventory : MonoBehaviour
     int index;
 
     public GameObject playerHand;
+    public GameManager gameManager;
+    public AudioSource useSound;
 
     void Start()
     {
         index = -1;
         SetCurrentItem(0);
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
-        int newIndex = index;
-        
-        for (KeyCode k = KeyCode.Alpha1; k < KeyCode.Alpha1 + placeable.Length; ++k)
+        if (!gameManager.isPaused)
         {
-            if (Input.GetKeyDown(k))
-                newIndex = k - KeyCode.Alpha1;
-        }
-
-        newIndex -= (int) Input.mouseScrollDelta.y;
-
-        if (newIndex < 0)
-            newIndex += placeable.Length;
-        else if (newIndex >= placeable.Length)
-            newIndex -= placeable.Length;
-
-        if (newIndex != index)
-            SetCurrentItem(newIndex);
-        
-        if (Input.GetButtonDown("Swing"))
-        {
-            if (placeable[index].isInfinite || placeable[index].quantity > 0)
+            int newIndex = index;
+            
+            for (KeyCode k = KeyCode.Alpha1; k < KeyCode.Alpha1 + placeable.Length; ++k)
             {
-                placeable[index].gameObject.GetComponent<Useable>().Use();
-                if (!placeable[index].isInfinite) 
+                if (Input.GetKeyDown(k))
+                    newIndex = k - KeyCode.Alpha1;
+            }
+
+            newIndex -= (int) Input.mouseScrollDelta.y;
+
+            if (newIndex < 0)
+                newIndex += placeable.Length;
+            else if (newIndex >= placeable.Length)
+                newIndex -= placeable.Length;
+
+            if (newIndex != index)
+                SetCurrentItem(newIndex);
+            
+            if (Input.GetButtonDown("Swing"))
+            {
+                if (placeable[index].isInfinite || placeable[index].quantity > 0)
                 {
-                    placeable[index].quantity -= 1;
+                    placeable[index].gameObject.GetComponent<Useable>().Use();
+                    useSound.PlayOneShot(useSound.clip);
+                    if (!placeable[index].isInfinite) 
+                    {
+                        placeable[index].quantity -= 1;
+                    }
                 }
             }
-        }
 
-        foreach (Item i in placeable)
-        {
-            if (!i.isInfinite)
-                i.quantityText.text = "" + i.quantity;
+            foreach (Item i in placeable)
+            {
+                if (!i.isInfinite)
+                    i.quantityText.text = "" + i.quantity;
+            }
         }
-
     }
 
     void SetCurrentItem(int newIndex)

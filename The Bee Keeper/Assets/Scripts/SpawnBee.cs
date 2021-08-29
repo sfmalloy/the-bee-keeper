@@ -10,8 +10,6 @@ public class SpawnBee : MonoBehaviour
     public Text beeCountText;
     public int flowerCount;
 
-    List<GameObject> bees;
-
     const float baseSpawnTime = 5.03f;
     float currTime;
     float spawnTime;
@@ -19,7 +17,6 @@ public class SpawnBee : MonoBehaviour
     void Start()
     {
         beeCount = 0;
-        bees = new List<GameObject>();
         currTime = 0;
 
         spawnTime = Mathf.Clamp(baseSpawnTime - 0.01f * flowerCount, 1.0f, baseSpawnTime);
@@ -42,20 +39,5 @@ public class SpawnBee : MonoBehaviour
 
         currTime += Time.deltaTime;
         spawnTime = baseSpawnTime - 0.01f * flowerCount;
-
-        // if (Input.GetKeyDown(KeyCode.R))
-        // {
-        //     for (int i = 0; i < beeCount; ++i) {
-        //         Destroy(bees[i]);
-        //     }
-
-        //     beeCount = 0;
-        //     beeCountText.text = "" + beeCount;
-        //     bees.Clear();
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Escape)) {
-        //     Application.Quit();
-        // }
     }
 }

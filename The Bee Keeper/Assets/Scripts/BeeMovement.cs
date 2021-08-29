@@ -95,7 +95,7 @@ public class BeeMovement : MonoBehaviour
     IEnumerator Wait(string thingToWaitFor)
     {
         flowerWait = true;
-        yield return new WaitForSeconds(Random.Range(5, 10));
+        yield return new WaitForSeconds(Random.Range(4, 7));
         Instantiate(seeds, currFlower.transform.position, Quaternion.identity);
         flowerWait = false;
         currFlower = null;

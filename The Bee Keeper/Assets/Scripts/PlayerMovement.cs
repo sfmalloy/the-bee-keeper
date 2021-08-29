@@ -8,13 +8,16 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform containerTransform;
     public Inventory inventory;
- 
+
+    public AudioSource walkingSound;
+
     Rigidbody2D rb;
 
     bool doJump;
     bool isGrounded;
 
     const float EPSILON = 0.000001f;
+
 
     void Start()
     {
@@ -52,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = false;
             containerTransform.localScale = new Vector2(1, 1);
+        }
+
+        if (hMove != 0 && !walkingSound.isPlaying)
+        {
+            walkingSound.pitch = Random.Range(0.8f, 1.2f);
+            walkingSound.PlayDelayed(.1f);
         }
 
         if (doJump && isGrounded)
